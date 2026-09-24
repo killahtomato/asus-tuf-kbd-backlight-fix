@@ -33,15 +33,19 @@ Run manually at any time:
 sudo /usr/local/sbin/fix-kbd-backlight
 ```
 
-## Customizing color / brightness
+## Customizing brightness
 
 Edit `fix-kbd-backlight.sh`:
 
-- **Color:** the `0xFFF000B3` value encodes `cmd | (mode<<8) | (R<<16) | (G<<24)`
-  with `B` and `speed` in the second argument. `0xFFF000B3` = static white
-  (R=255, G=255, B=255). For example, static red would be `0xB30000B3` with
-  `B=255` (see the kernel's `kbd_rgb_mode` protocol).
 - **Brightness:** `0x83` = on + level 3 (max). Levels are 0-3.
+
+## Color support
+
+The FA617NT keyboard is **white-only**. The EC exposes the TUF RGB protocol
+(`kbd_rgb_mode`, shared firmware across the TUF family) and accepts color
+commands, but the LED hardware is single-color white and ignores the R/G/B
+values. Verified: red/green/blue commands reach the EC and are processed, but
+the LEDs stay white.
 
 ## Files
 
