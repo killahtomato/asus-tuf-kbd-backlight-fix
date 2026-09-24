@@ -1,0 +1,11 @@
+[Unit]
+Description=Re-apply ASUS TUF keyboard backlight after cold boot
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/fix-kbd-backlight
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
